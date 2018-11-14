@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Busca LD-XML</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link rel="stylesheet" type="text/css" media="screen" href="main.css" /-->
+    
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/main.js"></script>
+    <script src="js/papaparse.js"></script>
+</head>
+<body>
+    <h3>Buscar informações sobre computador(es)</h3>
+        <div class="form" display="none">
+            <form visibility="hidden" onsubmit="return false">
+            <p>Cole as lojas pendente cadastro do computador abaixo</p>
+            <textarea id="inputcsv" placeholder="String input"></textarea>
+            <br>
+            <p>Entre com o numero da loja</p>
+            <input type="text" class="busca" id="ljbusca"><br>
+            <input type="checkbox" id="exact">Busca Exata<br><br>
+            <button id="envio" onclick="buscaXML()">Busca Loja</button>            
+            <button id="limpar" onclick="reset()">Limpar</button>
+            </form>
+            <p>* Loja com código alterado diferente do device</p> 
+        </div>
+        <br>
+        <div id="saida">Resultado obtido:</div>
+    
+    
+    
+    
+    
+    
+</body>
+</html>

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+.body{
+    font-family: 'Lato', sans-serif;
+}
+textarea {
+        box-sizing: border-box;
+        resize: horizontal;       
+        margin: 0px;
+        height: 133px;
+        width: 322px;            
+}
+.form input {
+        font-family: Poppins-Medium;
+        font-size: 15px;
+        line-height: 1.5;
+        color: #666666;
+        background: #e6e6e6;
+        height: -30px;
+        border-radius: 25px;
+        
+        padding:0 60px 0px 8px;
+    
+}
+.form button {
+        font-family: Montserrat-Bold;
+        font-size: 15px;
+        line-height: 1.5;
+        color: #fff;
+        text-transform: uppercase;
+        
+        height: 30px;
+        border-radius: 25px;
+        background: #57b846;
+        
+        
+        padding: 0 25px;
+        -webkit-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+        transition: all 0.4s;
+    
+}
