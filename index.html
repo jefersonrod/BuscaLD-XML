@@ -4,35 +4,47 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Busca LD-XML</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
     <!--link rel="stylesheet" type="text/css" media="screen" href="main.css" /-->
-    
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<!--link rel="stylesheet" type="text/css" href="css/main.css"-->
     <script src="js/main.js"></script>
     <script src="js/papaparse.js"></script>
 </head>
 <body>
-    <h3>Buscar informações sobre computador(es)</h3>
-        <div class="form" display="none">
-            <form visibility="hidden" onsubmit="return false">
-            <p>Cole as lojas pendente cadastro do computador abaixo</p>
-            <textarea id="inputcsv" placeholder="String input"></textarea>
-            <br>
-            <p>Entre com o numero da loja</p>
-            <input type="text" class="busca" id="ljbusca"><br>
-            <input type="checkbox" id="exact">Busca Exata<br><br>
-            <button id="envio" onclick="buscaXML()">Busca Loja</button>            
-            <button id="limpar" onclick="reset()">Limpar</button>
-            </form>
-            <p>* Loja com código alterado diferente do device</p> 
+    <br>
+    <div class="p-4">
+        <div class="bg-primary text-white rounded p-4">
+        <h3>Buscar informações sobre computador(es)</h3>
         </div>
-        <br>
-        <div id="saida">Resultado obtido:</div>
-    
-    
-    
-    
-    
-    
+        <form visibility="hidden" onsubmit="return false">
+            <div class="form-group bg-dark text-white rounded" display="none">
+                <div class="p-4">
+                    <p>Cole as lojas pendente cadastro do computador abaixo</p>
+                    <textarea id="inputcsv" class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="String input"></textarea>
+                    <br>
+                    <p>Entre com o numero da loja</p>
+                    <input type="text" class="busca form-control" id="ljbusca"><br>                    
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">Busca Exata</label>                            
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                            <label class="custom-control-label" for="customCheck2">Mostrar IP</label>                            
+                        </div>
+                        <br>
+                    <button id="envio" class="btn btn-primary" onclick="buscaXML()">Busca Loja</button>            
+                    <button id="limpar" class="btn btn-primary" onclick="reset()">Limpar busca</button>
+                    <button id="limpar" class="btn btn-primary" onclick="limpaTudo()">Limpar tudo</button>
+                    <h6>* Loja com código alterado diferente do device</h6> 
+                </div>
+            </div>
+        </form>
+        <div class="bg-primary text-white rounded p-4">
+            <p id="saida">Resultado obtido:  </p>        
+            <br>
+        </div>
+    </div>
 </body>
 </html>

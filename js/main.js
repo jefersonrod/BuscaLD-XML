@@ -18,7 +18,9 @@ function buscaXML()
     var filexml="xml/allBrasil.xml";
     var urlxml = "https://landesk.e-boticario.com.br/MBSDKService/MsgSDK.asmx/RunQuery?queryName=Brasil_bot_qdb_pcs";    
         
-    var spanred = "<span style=\"color:red\">";
+    //var spanred = "<span style=\"color:red\">";
+    //var spanend = "</span>";
+    var spanred = "<span class=\"badge badge-pill badge-danger text-white\">";
     var spanend = "</span>";
     var lb = "</br>";
     var notfound = true;
@@ -27,6 +29,8 @@ function buscaXML()
     var inputField = "<input type=\"text\" value=\"";
     var inputFieldEnd = "\">";
     var valdesativado = "desativado\" style=\"text-decoration: line-through;\"";
+    var showip = false;
+    var ipnumber = "0.0.0.0";
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
@@ -52,9 +56,13 @@ function buscaXML()
                 readArray(ljxArray);
                 ljxArray.length = 0;
             } else {
-                var checkExact = document.getElementById("exact").checked            
+                var checkExact = document.getElementById("customCheck1").checked            
                 if (checkExact) {
                     ljx=addZeros();            
+                }
+                var checkMostraIP = document.getElementById("customCheck2").checked            
+                if (checkMostraIP) {
+                    showip = true;
                 }
                 readSingleLJ();
             }
@@ -94,13 +102,26 @@ function buscaXML()
             model = valdesativado;
         }
         
+        if(showip){
+            ipnumber = x[i].childNodes[7].innerHTML;
+            console.log("SHOW IP");
+            console.log(x[i].childNodes[7].innerHTML);
+        }
         
         
         if (codigoNovo) {
-            txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+spanred+"* "+CodigoAtual+spanend+lb    
-
+            if(showip){
+                txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+" / "+inputField+ipnumber+inputFieldEnd+spanred+" * "+CodigoAtual+spanend+lb
+            }else{
+                txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+spanred+" * "+CodigoAtual+spanend+lb    
+            }   
         }else{
-            txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+lb
+            if(showip){
+                txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+" / "+inputField+ipnumber+inputFieldEnd+lb
+            }else{
+                txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+lb
+            }
+            
         }
                 
         console.log(i+"/"+x.length+"="+txt+"/"+model+"/"+srvtag);
@@ -185,6 +206,11 @@ function parseCSV(){
     }
     
     return lojasVirgulas;
+}
+
+function limpaTudo(){
+    location.reload();
+    window.location.reload(true);
 }
 
 function Teste(){
