@@ -20,6 +20,7 @@ function buscaXML()
         
     //var spanred = "<span style=\"color:red\">";
     //var spanend = "</span>";
+    var separador = " | ";
     var spanred = "<span class=\"badge badge-pill badge-danger text-white\">";
     var spanend = "</span>";
     var lb = "</br>";
@@ -27,10 +28,13 @@ function buscaXML()
     var cont = 0;
     var zeros = "0";   
     var inputField = "<input type=\"text\" value=\"";
+    var inputFieldRO = "<input type=\"text\" readonly value=\"";
     var inputFieldEnd = "\">";
     var valdesativado = "desativado\" style=\"text-decoration: line-through;\"";
     var showip = false;
     var ipnumber = "0.0.0.0";
+    var headResult = inputFieldRO+"Loja"+inputFieldEnd+separador+inputFieldRO+"Device"+inputFieldEnd+separador+inputFieldRO+"Modelo"+inputFieldEnd+separador+inputFieldRO+"Service Tag"+inputFieldEnd+lb
+    var headResultIP = inputFieldRO+"Loja"+inputFieldEnd+separador+inputFieldRO+"Device"+inputFieldEnd+separador+inputFieldRO+"Modelo"+inputFieldEnd+separador+inputFieldRO+"Service Tag"+inputFieldEnd+separador+inputFieldRO+"I.P."+inputFieldEnd+lb
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
@@ -88,6 +92,11 @@ function buscaXML()
 
     function readXML(x,i,codigoNovo,CodigoAtual){
         //read xml and populate vars.
+        if(showip){
+            txt = headResultIP;
+        }else{
+            txt = headResult;
+        }
         loja = parseInt(machine.substring(4,10))*1;
         if ((x[i].childNodes[5]) !== undefined) {
             srvtag = x[i].childNodes[5].innerHTML;
@@ -106,20 +115,22 @@ function buscaXML()
             ipnumber = x[i].childNodes[7].innerHTML;
             console.log("SHOW IP");
             console.log(x[i].childNodes[7].innerHTML);
+            console.log(convertIP(ipnumber));
+            ipnumber = convertIP(ipnumber);
         }
         
         
         if (codigoNovo) {
             if(showip){
-                txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+" / "+inputField+ipnumber+inputFieldEnd+spanred+" * "+CodigoAtual+spanend+lb
+                txt += inputField+loja+inputFieldEnd+separador+inputField+machine+inputFieldEnd+separador+inputField+model+inputFieldEnd+separador+inputField+srvtag+inputFieldEnd+separador+inputField+ipnumber+inputFieldEnd+spanred+" * "+CodigoAtual+spanend+lb
             }else{
-                txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+spanred+" * "+CodigoAtual+spanend+lb    
+                txt += inputField+loja+inputFieldEnd+separador+inputField+machine+inputFieldEnd+separador+inputField+model+inputFieldEnd+separador+inputField+srvtag+inputFieldEnd+spanred+" * "+CodigoAtual+spanend+lb    
             }   
         }else{
             if(showip){
-                txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+" / "+inputField+ipnumber+inputFieldEnd+lb
+                txt += inputField+loja+inputFieldEnd+separador+inputField+machine+inputFieldEnd+separador+inputField+model+inputFieldEnd+separador+inputField+srvtag+inputFieldEnd+separador+inputField+ipnumber+inputFieldEnd+lb
             }else{
-                txt += inputField+loja+inputFieldEnd+" / "+inputField+machine+inputFieldEnd+" / "+inputField+model+inputFieldEnd+" / "+inputField+srvtag+inputFieldEnd+lb
+                txt += inputField+loja+inputFieldEnd+separador+inputField+machine+inputFieldEnd+separador+inputField+model+inputFieldEnd+separador+inputField+srvtag+inputFieldEnd+lb
             }
             
         }
@@ -206,6 +217,24 @@ function parseCSV(){
     }
     
     return lojasVirgulas;
+}
+
+function convertIP(ipStr){
+    var ipOriginal ="";
+    var ipTemp = ipStr+"."; 
+    var ipCalc;
+    for (let i = 1; i <= 4;i++) {
+        var posDot = ipTemp.indexOf(".");
+        ipCalc = ipTemp.substring(0,posDot);
+        ipCalc = ipCalc * 1;
+        ipOriginal = ipOriginal + ipCalc + ".";
+        ipTemp = ipTemp.substring(posDot+1);
+        console.log("passo: "+i);
+        console.log("ipTemp: "+ipTemp);
+        console.log("ipOriginal: "+ipOriginal);
+    }     
+    ipOriginal = ipOriginal.substr(0, ipOriginal.length-1);
+    return ipOriginal;
 }
 
 function limpaTudo(){
