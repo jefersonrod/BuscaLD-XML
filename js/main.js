@@ -49,7 +49,7 @@ function buscaXML()
         xmlDoc = xml.responseXML;
         txt = "";
         x = xmlDoc.getElementsByTagName("Table");    
-                
+
         if (ljx == null || ljx == "") {
             alert("Campo de busca esta vazio");
 		    document.getElementById("ljbusca").focus();
@@ -57,6 +57,15 @@ function buscaXML()
             if ((ljx.includes(",")) || (ljx.includes("\t"))) {
                 var ljxArray = new Array();
                 ljxArray = ljx.split(",");
+                var checkMostraIP = document.getElementById("customCheck2").checked            
+                if (checkMostraIP) {
+                    showip = true;
+                }
+                if(showip){
+                    txt = headResultIP;
+                }else{
+                    txt = headResult;
+                }
                 readArray(ljxArray);
                 ljxArray.length = 0;
             } else {
@@ -67,6 +76,11 @@ function buscaXML()
                 var checkMostraIP = document.getElementById("customCheck2").checked            
                 if (checkMostraIP) {
                     showip = true;
+                }
+                if(showip){
+                    txt = headResultIP;
+                }else{
+                    txt = headResult;
                 }
                 readSingleLJ();
             }
@@ -92,11 +106,7 @@ function buscaXML()
 
     function readXML(x,i,codigoNovo,CodigoAtual){
         //read xml and populate vars.
-        if(showip){
-            txt = headResultIP;
-        }else{
-            txt = headResult;
-        }
+        
         loja = parseInt(machine.substring(4,10))*1;
         if ((x[i].childNodes[5]) !== undefined) {
             srvtag = x[i].childNodes[5].innerHTML;
