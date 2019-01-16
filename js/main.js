@@ -28,7 +28,7 @@ function buscaXML()
     var cont = 0;
     var zeros = "0";   
     var inputField = "<input type=\"text\" value=\"";
-    var inputFieldRO = "<input type=\"text\" readonly value=\"";
+    var inputFieldRO = "<input type=\"text\" class=\"bg-secondary text-white\" readonly value=\"";
     var inputFieldEnd = "\">";
     var valdesativado = "desativado\" style=\"text-decoration: line-through;\"";
     var showip = false;
