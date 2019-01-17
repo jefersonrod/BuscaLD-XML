@@ -3,11 +3,8 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Busca LD-XML</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
-    <!--link rel="stylesheet" type="text/css" media="screen" href="main.css" /-->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<!--link rel="stylesheet" type="text/css" href="css/main.css"-->
+    <title>Busca Loja no LanDesk v1.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">        
     <script src="js/main.js"></script>
     <script src="js/papaparse.js"></script>
 </head>
@@ -15,7 +12,8 @@
     <br>
     <div class="p-4">
         <div class="bg-primary text-white rounded p-4">
-        <h3>Buscar informações sobre computador(es)</h3>
+        <h4>Busca Loja no LanDesk v1.0</h4>
+        <h5>Buscar informações sobre computador(es)</h5>
         </div>
         <form visibility="hidden" onsubmit="return false">
             <div class="form-group bg-dark text-white rounded" display="none">
@@ -45,6 +43,26 @@
             <p id="saida">Resultado obtido:  </p>        
             <br>
         </div>
+        <br>
+        <div id="dev" >
+            <button id="author" type="button" class="btn btn-outline-dark" onclick="mailto()">Desenvolvido por Jeferson/Disys - 01/2019 - @e-mail</button>     
+        </div>
     </div>
+   
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<!-- Optional JavaScript -->
+<script>
+    $(function(){
+    $('#author').click(function() {
+        window.location.href=("mailto:T_DISYS.Jeferson.Rodrigues@grupoboticario.com.br");
+    });
+    });
+    </script>	
 </body>
 </html>
